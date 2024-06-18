@@ -11,6 +11,7 @@ base {
 }
 
 repositories {
+	maven { url = "https://maven.parchmentmc.org/" }
 	maven { url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/" }
 }
 
