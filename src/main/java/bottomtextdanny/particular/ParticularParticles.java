@@ -1,10 +1,10 @@
 package bottomtextdanny.particular;
 
+import bottomtextdanny.particular.braincellapi.LoopedStretchableSpriteParticle;
+import bottomtextdanny.particular.braincellapi.ParticleAction;
 import bottomtextdanny.particular.braincellapi.StretchLoopOptions;
 import bottomtextdanny.particular.braincellapi.StretchOptions;
-import bottomtextdanny.particular.braincellapi.LoopedStretchableSpriteParticle;
 import bottomtextdanny.particular.braincellapi.StretchableSpriteParticle;
-import bottomtextdanny.particular.braincellapi.ParticleAction;
 import bottomtextdanny.particular.particle.ModularParticleClient;
 import bottomtextdanny.particular.particle.ModularParticleClientData;
 import bottomtextdanny.particular.particle.ModularParticleCreator;

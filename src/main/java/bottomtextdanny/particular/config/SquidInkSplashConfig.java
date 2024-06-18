@@ -17,7 +17,7 @@ public class SquidInkSplashConfig {
 	}
 
 	public double ejectionStrength() {
-		return ejectionStrength.get().doubleValue();
+		return ejectionStrength.get();
 	}
 
 	public int min() {

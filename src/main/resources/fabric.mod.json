@@ -1,0 +1,30 @@
+{
+	"schemaVersion": 1,
+	"id": "particular",
+	"version": "${version}",
+	"name": "Particular",
+	"description": "Client-side mod that adds more particles to your world.\nParticular, get it?",
+	"authors": [
+		"BottomTextDanny"
+	],
+	"contact": {
+		"sources": "https://github.com/bottomtextdanny/Particular"
+	},
+	"license": "All Rights Reserved",
+	"icon": "particular_logo.png",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"bottomtextdanny.particular.Particular"
+		]
+	},
+	"mixins": [
+		"particular.mixins.json"
+	],
+	"depends": {
+		"fabricloader": "*",
+		"minecraft": ">=1.20",
+		"fabric-api": "*",
+		"forgeconfigapiport": "*"
+	}
+}

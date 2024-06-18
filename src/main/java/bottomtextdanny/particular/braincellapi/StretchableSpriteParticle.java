@@ -7,12 +7,12 @@ package bottomtextdanny.particular.braincellapi;
 
 import bottomtextdanny.particular.braincellapi.local_sprites.SimpleSpriteGroup;
 import it.unimi.dsi.fastutil.floats.FloatList;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.SpriteSet;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public class StretchableSpriteParticle extends BaseSpriteParticle<StretchOptions> {
 
     public StretchableSpriteParticle(int sprites, ClientLevel world,
@@ -40,10 +40,5 @@ public class StretchableSpriteParticle extends BaseSpriteParticle<StretchOptions
                 break;
             }
         }
-    }
-
-    @Override
-    public void removeParticle() {
-        super.remove();
     }
 }

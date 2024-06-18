@@ -12,15 +12,14 @@ import net.minecraft.client.particle.TextureSheetParticle;
 import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.border.WorldBorder;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 public abstract class ModularTextureSheetParticle<E extends ExtraOptions> extends TextureSheetParticle implements MParticle {
@@ -42,7 +41,7 @@ public abstract class ModularTextureSheetParticle<E extends ExtraOptions> extend
 	public float yRot;
 	public float sizeO;
 
-	protected ModularTextureSheetParticle(int sprites, ClientLevel world, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, ParticleAction start, ParticleAction ticker, E options) {
+	protected ModularTextureSheetParticle(int sprites, ClientLevel world, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, ParticleAction<?> start, ParticleAction<?> ticker, E options) {
 		super(world, x, y, z, xSpeed, ySpeed, zSpeed);
 		this.sprites = sprites;
 		this.ticker = ticker;
@@ -238,14 +237,16 @@ public abstract class ModularTextureSheetParticle<E extends ExtraOptions> extend
 	}
 
 	@Override
+	@NotNull
 	public ParticleRenderType getRenderType() {
 		return getFlag(TRANSLUCENT) ? ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT : ParticleRenderType.PARTICLE_SHEET_OPAQUE;
 	}
 
-	@Override
-	public boolean shouldCull() {
-		return !getFlag(IGNORE_CULLING);
-	}
+	// TODO
+//	@Override
+//	public boolean shouldCull() {
+//		return !getFlag(IGNORE_CULLING);
+//	}
 
 	@Override
 	public Vec3 getPos() {
@@ -340,12 +341,12 @@ public abstract class ModularTextureSheetParticle<E extends ExtraOptions> extend
 	}
 
 	@Override
-	public ParticleAction start() {
+	public ParticleAction<?> start() {
 		return start;
 	}
 
 	@Override
-	public ParticleAction ticker() {
+	public ParticleAction<?> ticker() {
 		return ticker;
 	}
 

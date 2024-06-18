@@ -17,7 +17,7 @@ public class SquidSploinkyHandler {
 
 	public static void hurt(Squid squid) {
 
-		if (!(squid.level instanceof ClientLevel clientLevel)) {
+		if (!(squid.level() instanceof ClientLevel clientLevel)) {
 			return;
 		}
 

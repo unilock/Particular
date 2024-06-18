@@ -2,10 +2,10 @@ package bottomtextdanny.particular.particle;
 
 import bottomtextdanny.particular.braincellapi.ExtraOptions;
 import bottomtextdanny.particular.braincellapi.ParticleAction;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ModularParticleClientData<E extends ExtraOptions> {
 	ModularParticleClient<E> manager;
@@ -13,12 +13,12 @@ public class ModularParticleClientData<E extends ExtraOptions> {
 	public final ParticleAction<?> tick;
 	public final E extra;
 
-	@OnlyIn(Dist.CLIENT)
+	@Environment(EnvType.CLIENT)
 	public ModularParticleClientData(ModularParticleClient<E> type, ParticleAction<?> start, ParticleAction<?> tick) {
 		this(type, start, tick, type.defaultOptions.extra);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@Environment(EnvType.CLIENT)
 	public ModularParticleClientData(ModularParticleClient<E> type, ParticleAction<?> start, ParticleAction<?> tick, E extra) {
 		manager = type;
 		this.start = start;

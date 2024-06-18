@@ -1,9 +1,6 @@
 package bottomtextdanny.particular.config;
 
-import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.ForgeConfigSpec;
-
-import java.util.Set;
 
 public class ExplosionConfig {
 	private final ForgeConfigSpec.IntValue minParticles;

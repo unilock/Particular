@@ -7,7 +7,7 @@ package bottomtextdanny.particular.braincellapi;
 
 @FunctionalInterface
 public interface ParticleAction<T extends MParticle> {
-	ParticleAction NO = particle -> {};
+	ParticleAction<?> NO = particle -> {};
 
 	default void _execute(MParticle particle) {
 		execute((T)particle);

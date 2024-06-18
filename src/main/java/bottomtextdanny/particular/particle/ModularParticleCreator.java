@@ -3,8 +3,7 @@ package bottomtextdanny.particular.particle;
 import bottomtextdanny.particular.braincellapi.ExtraOptions;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
-
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 public interface ModularParticleCreator<E extends ExtraOptions> {
 	@Nullable

@@ -5,11 +5,11 @@
 
 package bottomtextdanny.particular.braincellapi;
 
-import org.joml.Vector3f;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.phys.Vec3;
+import org.joml.Vector3f;
 
 public interface MParticle {
 	int CAMERA_DISJUNCTION_BIT = 0b1;

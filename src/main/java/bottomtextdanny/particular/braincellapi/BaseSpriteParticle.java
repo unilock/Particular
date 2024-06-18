@@ -9,16 +9,16 @@ import bottomtextdanny.particular.braincellapi.base.ImpreciseRot;
 import bottomtextdanny.particular.braincellapi.local_sprites.SpriteGroup;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import org.joml.Vector3f;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import org.joml.Vector3f;
 
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public abstract class BaseSpriteParticle<E extends ExtraOptions> extends ModularTextureSheetParticle<E> {
     protected SpriteGroup sprites;
 
@@ -59,7 +59,7 @@ public abstract class BaseSpriteParticle<E extends ExtraOptions> extends Modular
     }
 
     protected abstract void handleSprite(float lifetime);
-    
+
     public void render(VertexConsumer buffer, Camera renderInfo, float tickOffset) {
         float f4 = Math.max(getQuadSize(tickOffset), 0.0F);
         PoseStack pose = new PoseStack();

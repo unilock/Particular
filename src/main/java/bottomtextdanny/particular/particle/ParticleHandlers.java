@@ -4,18 +4,16 @@ import bottomtextdanny.particular.Particular;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.client.event.TextureStitchEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
 
 import java.util.List;
 
 public class ParticleHandlers {
 	private final ImmutableList<ModularParticleClient<?>> particleManagers;
 
-	public ParticleHandlers(IEventBus bus, List<ModularParticleClient<?>> particleManagers) {
+	public ParticleHandlers(List<ModularParticleClient<?>> particleManagers) {
 		this.particleManagers = ImmutableList.copyOf(particleManagers);
 		//bus.addListener(this::onTextureAtlasPre);
-		bus.addListener(this::onTextureAtlasPost);
+		//bus.addListener(this::onTextureAtlasPost);
 	}
 
 //	private void onTextureAtlasPre(TextureStitchEvent.Pre event){
@@ -27,12 +25,12 @@ public class ParticleHandlers {
 //		}
 //	}
 
-	private void onTextureAtlasPost(TextureStitchEvent.Post event){
+	public void onTextureAtlasPost(TextureAtlas atlas){
 		System.out.println("Fetching particle textures");
-		if (event.getAtlas().location().equals(TextureAtlas.LOCATION_PARTICLES)) {
-			System.out.println(event.getAtlas().getSprite(new ResourceLocation(Particular.ID, "particle/dust_0.png")));
+		if (atlas.location().equals(TextureAtlas.LOCATION_PARTICLES)) {
+			System.out.println(atlas.getSprite(new ResourceLocation(Particular.ID, "particle/dust_0.png")));
 			particleManagers.forEach(manager -> {
-				manager.spriteSet.rebind(manager.textures.stream().map(loc -> event.getAtlas().getSprite(loc)).toList());
+				manager.spriteSet.rebind(manager.textures.stream().map(atlas::getSprite).toList());
 			});
 		}
 	}

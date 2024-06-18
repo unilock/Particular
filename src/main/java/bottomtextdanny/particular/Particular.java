@@ -2,34 +2,21 @@ package bottomtextdanny.particular;
 
 import bottomtextdanny.particular.config.ParticularConfig;
 import bottomtextdanny.particular.particle.ParticleHandlers;
-import net.minecraft.core.Registry;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import fuzs.forgeconfigapiport.api.config.v2.ForgeConfigRegistry;
+import net.fabricmc.api.ClientModInitializer;
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import java.util.List;
 
-@Mod(Particular.ID)
-public class Particular {
+public class Particular implements ClientModInitializer {
     public static final String ID = "particular";
-    private static Object particleHandlers;
-    private static Object config;
+    private static ParticleHandlers particleHandlers;
+    private static ParticularConfig config;
 
-    public Particular() {
-        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> Particular::setupClient);
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    private static void setupClient() {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
-        particleHandlers = new ParticleHandlers(modEventBus, List.of(
+	@Override
+	public void onInitializeClient() {
+        particleHandlers = new ParticleHandlers(List.of(
             ParticularParticles.DUST,
             ParticularParticles.CLOUD,
             ParticularParticles.HASTY_SMOKE,
@@ -45,11 +32,14 @@ public class Particular {
         ForgeConfigSpec.Builder configBuilder = new ForgeConfigSpec.Builder();
 
         config = new ParticularConfig(configBuilder);
-        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, configBuilder.build());
+        ForgeConfigRegistry.INSTANCE.register(ID, ModConfig.Type.CLIENT, configBuilder.build());
     }
 
-    @OnlyIn(Dist.CLIENT)
     public static ParticularConfig config() {
-        return (ParticularConfig) config;
+        return config;
+    }
+
+    public static ParticleHandlers particleHandlers() {
+        return particleHandlers;
     }
 }

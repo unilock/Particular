@@ -1,9 +1,12 @@
 package bottomtextdanny.particular;
 
-import bottomtextdanny.particular.braincellapi.*;
+import bottomtextdanny.particular.braincellapi.LoopedStretchableSpriteParticle;
+import bottomtextdanny.particular.braincellapi.MParticle;
+import bottomtextdanny.particular.braincellapi.StretchLoopOptions;
+import bottomtextdanny.particular.braincellapi.StretchOptions;
+import bottomtextdanny.particular.braincellapi.StretchableSpriteParticle;
 import bottomtextdanny.particular.braincellapi.base.BCVectors;
 import bottomtextdanny.particular.config.CeilingDebrisConfig;
-import bottomtextdanny.particular.config.ParticularConfig;
 import bottomtextdanny.particular.particle.ModularParticleClientData;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
@@ -12,7 +15,6 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.tags.BiomeTags;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
@@ -22,9 +24,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
-
-import javax.annotation.Nullable;
 
 
 public class AnimationTickHandler {
@@ -67,7 +68,7 @@ public class AnimationTickHandler {
 	public static Direction oreShineDirection(Level level, BlockPos pos, RandomSource random) {
 		Direction dir = Direction.values()[random.nextInt(Direction.values().length)];
 
-		if (!level.getBlockState(pos.relative(dir)).getMaterial().isSolid()) return dir;
+		if (!level.getBlockState(pos.relative(dir)).isSolid()) return dir;
 		return null;
 	}
 

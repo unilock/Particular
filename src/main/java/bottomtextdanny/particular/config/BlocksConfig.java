@@ -1,12 +1,9 @@
 package bottomtextdanny.particular.config;
 
 import com.google.common.collect.ImmutableSet;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
@@ -14,7 +11,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.ForgeConfigSpec;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openjdk.nashorn.internal.runtime.regexp.joni.Regex;
 
 import java.util.Optional;
 import java.util.Set;
@@ -53,7 +49,7 @@ public class BlocksConfig {
 	}
 
 	private void checkKey(ImmutableSet.Builder<Block> set, String key) {
-		if (key.length() > 0 && key.charAt(0) == '#') {
+		if (!key.isEmpty() && key.charAt(0) == '#') {
 			key = key.substring(1);
 
 			testTagReference(set, key);
@@ -68,7 +64,7 @@ public class BlocksConfig {
 
 			if (tagBlocksIterator.isPresent()) {
 				for (Holder<Block> holder : tagBlocksIterator.get()) {
-					set.add(holder.get());
+					set.add(holder.value());
 				}
 			} else {
 				LOGGER.error("Tag reference {} couldn't be found. It will be skipped!", key);
@@ -82,7 +78,7 @@ public class BlocksConfig {
 		if (ResourceLocation.isValidResourceLocation(key)) {
 			Block block = BuiltInRegistries.BLOCK.get(new ResourceLocation(key));
 
-			if (block != null && block != Blocks.AIR) {
+			if (block != Blocks.AIR) {
 				set.add(block);
 			} else {
 				LOGGER.error("Block reference {} couldn't be found or it is minecraft:air. It will be skipped!", key);

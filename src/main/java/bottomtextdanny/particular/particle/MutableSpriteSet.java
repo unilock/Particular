@@ -4,20 +4,23 @@ import com.google.common.collect.ImmutableList;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.RandomSource;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
 public class MutableSpriteSet implements SpriteSet {
 	private List<TextureAtlasSprite> sprites;
 
-	public TextureAtlasSprite get(int p_107413_, int p_107414_) {
-		return this.sprites.get(p_107413_ * (this.sprites.size() - 1) / p_107414_);
+	@Override
+	@NotNull
+	public TextureAtlasSprite get(int age, int lifetime) {
+		return this.sprites.get(age * (this.sprites.size() - 1) / lifetime);
 	}
 
-	public TextureAtlasSprite get(RandomSource p_233889_) {
-		return this.sprites.get(p_233889_.nextInt(this.sprites.size()));
+	@Override
+	@NotNull
+	public TextureAtlasSprite get(RandomSource random) {
+		return this.sprites.get(random.nextInt(this.sprites.size()));
 	}
 
 	public void rebind(List<TextureAtlasSprite> p_107416_) {

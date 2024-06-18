@@ -6,8 +6,7 @@
 package bottomtextdanny.particular.braincellapi;
 
 import it.unimi.dsi.fastutil.floats.FloatList;
-
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 public final class StretchOptions implements ExtraOptions {
 	private final int time;

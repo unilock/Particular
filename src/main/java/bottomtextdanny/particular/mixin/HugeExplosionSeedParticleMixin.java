@@ -11,13 +11,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(HugeExplosionSeedParticle.class)
 public class HugeExplosionSeedParticleMixin extends NoRenderParticle {
-
-	protected HugeExplosionSeedParticleMixin(ClientLevel p_107149_, double p_107150_, double p_107151_, double p_107152_) {
-		super(p_107149_, p_107150_, p_107151_, p_107152_);
+	protected HugeExplosionSeedParticleMixin(ClientLevel level, double x, double y, double z) {
+		super(level, x, y, z);
 	}
 
 	@Inject(method = "tick", at = @At("TAIL"))
-	protected void tick(CallbackInfo ci) {
+	private void tick(CallbackInfo ci) {
 		ExplosionHandler.emitterTick(this, level, age, x, y, z, random);
 	}
 }
